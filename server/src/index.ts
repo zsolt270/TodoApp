@@ -11,9 +11,7 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 
-// route és minden más route
 app.use("/api/todos", router);
-// route és minden más route
 
 app.use("*", (req, res) => {
 	res.json({ message: "Route was not found" });
