@@ -1,0 +1,45 @@
+.bgLight {
+	background-color: hsl(0, 0%, 98%);
+	transition: background 0.5s;
+}
+.bgDark {
+	background-color: var(--darkBG);
+	transition: background 0.5s;
+}
+.bgDark,
+.bgLight {
+	min-height: 200rem;
+}
+
+.todoContainer {
+	min-width: 100%;
+	position: absolute;
+	top: 10%;
+	padding-left: 30%;
+	padding-right: 30%;
+	color: white;
+}
+.TodoTitle {
+	letter-spacing: 1rem;
+}
+.themeToggler:hover {
+	cursor: pointer;
+}
+@media only screen and (max-width: 1300px) {
+	.todoContainer {
+		padding-left: 20%;
+		padding-right: 20%;
+	}
+}
+@media only screen and (max-width: 900px) {
+	.todoContainer {
+		padding-left: 10%;
+		padding-right: 10%;
+	}
+}
+@media only screen and (max-width: 575px) {
+	.todoContainer {
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+}

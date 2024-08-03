@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+:root {
+	--active: hsl(220, 98%, 61%);
+	--checkBG: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+	/* light Theme */
+
+	/* dark Theme */
+	--darkBG: hsl(235, 21%, 11%);
+	--todoRowBG: hsl(235, 24%, 19%);
+	--darkTodosTextColor: hsl(234, 39%, 85%);
+	--darkTodosTextColorOnHover: hsl(236, 33%, 92%);
+	--darkFooterTextColor: hsl(234, 11%, 52%);
+	--darkCircleBorder: hsl(233, 14%, 35%);
+	--darkshadow: hsl(237, 14%, 26%);
+}
+
+body {
+	font-family: "Josefin Sans", sans-serif;
+	font-size: 18px;
+}
