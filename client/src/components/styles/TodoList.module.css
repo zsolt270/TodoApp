@@ -1,0 +1,15 @@
+.todoList {
+	border-radius: 0.3rem;
+}
+.lightTodoListLastRow,
+.darkTodoListLastRow {
+	transition: all 0.5s;
+}
+.lightTodoListLastRow {
+	background-color: var(--todoLightRowBG);
+	color: var(--lightTodosTextColor);
+}
+.darkTodoListLastRow {
+	background-color: var(--todoDarkRowBG);
+	color: var(--darkTodosTextColor);
+}

@@ -4,6 +4,7 @@ import moon from "../assets/icon-moon.svg";
 import { useContext } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
 import TodoInput from "./TodoInput";
+import TodoList from "./TodoList";
 
 export default function Main() {
 	const themeContext = useContext(ThemeContext);
@@ -27,9 +28,11 @@ export default function Main() {
 						/>
 					</div>
 				</div>
-				<div className='row'>
-					<TodoInput />
-				</div>
+				<TodoInput />
+				<TodoList />
+				<p className='mt-5 fs-6 text-secondary text-center'>
+					Drag and drop to reorder list
+				</p>
 			</div>
 		</div>
 	);

@@ -5,10 +5,16 @@
 	--checkBG: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
 
 	/* light Theme */
+	--lightBG: hsl(236, 33%, 92%);
+	--todoLightRowBG: hsl(0, 0%, 98%);
+	--lightTodosTextColor: hsl(235, 19%, 35%);
+	/* --darkTodosTextColorOnHover: hsl(236, 33%, 92%);
+	--darkFooterTextColor: hsl(234, 11%, 52%); */
+	--lightCircleBorder: hsl(233, 11%, 84%);
 
 	/* dark Theme */
 	--darkBG: hsl(235, 21%, 11%);
-	--todoRowBG: hsl(235, 24%, 19%);
+	--todoDarkRowBG: hsl(235, 24%, 19%);
 	--darkTodosTextColor: hsl(234, 39%, 85%);
 	--darkTodosTextColorOnHover: hsl(236, 33%, 92%);
 	--darkFooterTextColor: hsl(234, 11%, 52%);

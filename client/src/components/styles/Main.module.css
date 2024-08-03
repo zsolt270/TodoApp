@@ -1,5 +1,5 @@
 .bgLight {
-	background-color: hsl(0, 0%, 98%);
+	background-color: var(--lightBG);
 	transition: background 0.5s;
 }
 .bgDark {
@@ -8,7 +8,7 @@
 }
 .bgDark,
 .bgLight {
-	min-height: 200rem;
+	min-height: 33rem;
 }
 
 .todoContainer {
@@ -25,10 +25,22 @@
 .themeToggler:hover {
 	cursor: pointer;
 }
+@media only screen and (max-width: 1450px) {
+	.bgDark,
+	.bgLight {
+		min-height: 40rem;
+	}
+}
 @media only screen and (max-width: 1300px) {
 	.todoContainer {
 		padding-left: 20%;
 		padding-right: 20%;
+	}
+}
+@media only screen and (max-width: 950px) {
+	.bgDark,
+	.bgLight {
+		min-height: 50rem;
 	}
 }
 @media only screen and (max-width: 900px) {
@@ -37,9 +49,19 @@
 		padding-right: 10%;
 	}
 }
+@media only screen and (max-width: 768px) {
+	.bgDark,
+	.bgLight {
+		min-height: 55rem;
+	}
+}
 @media only screen and (max-width: 575px) {
 	.todoContainer {
 		padding-left: 5%;
 		padding-right: 5%;
+	}
+	.bgDark,
+	.bgLight {
+		min-height: 61rem;
 	}
 }

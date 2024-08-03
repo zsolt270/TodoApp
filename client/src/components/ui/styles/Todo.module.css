@@ -1,34 +1,17 @@
-.lightInputContainer,
-.darkInputContainer {
-	border-radius: 0.3rem;
+.darkTodo,
+.lightTodo {
+	padding: 1.2rem 2rem;
 	display: flex;
 	align-items: center;
-	padding-left: 2rem;
-	padding-right: 2rem;
+	gap: 2;
 }
 
-.lightInputContainer {
-	background-color: var(--todoLightRowBG);
-}
-
-.darkInputContainer {
-	background-color: var(--todoDarkRowBG);
-}
-
-.lightInput,
-.darkInput {
-	outline: none;
-	border: none;
-	padding: 1.2rem 1.2rem;
-	width: 100%;
-}
-
-.lightInput {
+.lightTodo {
+	border-bottom: 2px solid var(--lightCircleBorder);
 	background-color: var(--todoLightRowBG);
 	color: var(--lightTodosTextColor);
 }
-
-.darkInput {
+.darkTodo {
 	background-color: var(--todoDarkRowBG);
 	color: var(--darkTodosTextColor);
 }
@@ -51,10 +34,8 @@
 	border: 1px solid var(--darkCircleBorder);
 }
 
-.lightInputContainer,
-.darkInputContainer,
-.lightInput,
-.darkInput,
+.lightTodo,
+.darkTodo,
 .darkCircle,
 .lightCircle {
 	transition: all 0.5s;
