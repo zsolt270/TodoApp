@@ -1,8 +1,6 @@
--utolsó sort megofrmázni mobilra
 -useffect lefetchelni a todokat és akkor mindegyikből csinálljon egy todo divet, ha nincs akkor ne csináljon
 -hozzáadni todokat
 -módositani todokat készre
 -törölni todot és törölni több todot(erre szerintem kell majd egy új metódus az osztályba)
 -jobb lent a számlálót hogy mennyi aktiv
 -és a filter(all/active/completed)
--drag and drop

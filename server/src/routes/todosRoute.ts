@@ -20,4 +20,7 @@ router.put("/:id", asyncHandler(controller.updateTodo));
 //delete a todo
 router.delete("/:id", asyncHandler(controller.deleteTodo));
 
+//delete all of the todos
+router.delete("/", asyncHandler(controller.deleteAllTodos));
+
 export default router;

@@ -30,7 +30,7 @@ export default function Todo() {
 				)}
 			</span>
 			<div className='d-flex justify-content-between align-items-center w-100'>
-				<p className='mb-0'>
+				<p className='mb-0 text-break'>
 					{isChecked ? <del className='text-secondary'>valami</del> : "valami"}
 				</p>
 				<img

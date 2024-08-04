@@ -44,4 +44,12 @@ export default class TodosController {
 		}
 		res.json({ message: "The deletion was successfull!" });
 	}
+	async deleteAllTodos(req: Request, res: Response) {
+		const deleted = await Todos.deleteMany();
+		if (!deleted) {
+			res.status(404);
+			throw new Error("No todos found!");
+		}
+		res.json({ message: "The deletion was successfull!" });
+	}
 }
