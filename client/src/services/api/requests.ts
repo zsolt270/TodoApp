@@ -40,3 +40,14 @@ export const deleteSingleTodo = async (id: string) => {
 			console.log(err);
 		});
 };
+
+export const deleteALLTodo = async () => {
+	await axios
+		.delete(`http://localhost:5001/api/todos/`)
+		.then((res) => {
+			console.log(res.data);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};

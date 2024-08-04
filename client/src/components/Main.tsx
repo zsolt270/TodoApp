@@ -34,7 +34,10 @@ export default function Main({ todos, setTodos }: MainProps) {
 						/>
 					</div>
 				</div>
-				<TodoInput />
+				<TodoInput
+					todosList={todos}
+					setTodos={setTodos}
+				/>
 				<TodoList
 					todosList={todos}
 					setTodos={setTodos}

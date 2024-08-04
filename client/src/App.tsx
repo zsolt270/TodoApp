@@ -6,6 +6,7 @@ import { TodoType } from "./services/api/apiTypes.ts";
 
 function App() {
 	const { todos, setTodos }: TodoType[] | any = useFetchTodos();
+	console.log(todos);
 	return (
 		<div className='container-fluid px-0 '>
 			<Banner />

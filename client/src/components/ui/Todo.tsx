@@ -6,19 +6,64 @@ import { useContext, useState } from "react";
 import { ThemeContext } from "../../services/providers/ThemeContext";
 import { updateUpdateToCompleted } from "../../services/api/requests";
 import { deleteSingleTodo } from "../../services/api/requests";
+import { TodoType } from "../../services/api/apiTypes";
 
-export default function Todo({ todo }) {
+type TodoPropsType = {
+	todo: any;
+	setTodos: (todo: TodoType[]) => void;
+	todoArray: any;
+	setFilteredTodos?: (value: React.SetStateAction<TodoType[] | null>) => void;
+	activeFilter?: "all" | "active" | "completed";
+};
+
+export default function Todo({
+	todo,
+	setTodos,
+	todoArray,
+	setFilteredTodos,
+	activeFilter,
+}: TodoPropsType) {
 	const themeContext = useContext(ThemeContext);
 	const [isChecked, setIsChecked] = useState(false);
+
 	const handleCheck = () => {
 		setIsChecked(!isChecked);
-		console.log(isChecked);
-		//ide akkor még majd az update request fetchet, hogy changelje completedre
 		updateUpdateToCompleted(todo._id, isChecked as unknown as string);
+		// itt lehet a settodost direktbe változtatni
+		// megkeresni a todo._id-t filterrel és akkor azét setTodo(...todo(vagy valami), isComplete: isChecked)
+		// setTodos()
 	};
 
 	const handleSingleDelete = () => {
 		deleteSingleTodo(todo._id);
+		// ez akkor ha nem volt filterelve
+		const valami = todoArray.filter((td) => {
+			return td._id !== todo._id;
+		});
+		setTodos(valami);
+		// ez akkor ha nem volt filterelve end
+
+		//ha rányoktak a filterekre
+		if (activeFilter == "all") {
+			setFilteredTodos(
+				todoArray.filter((td) => {
+					return td._id !== todo._id;
+				})
+			);
+		} else if (activeFilter == "active") {
+			setFilteredTodos(
+				todoArray.filter((td) => {
+					return td._id !== todo._id && !td.isComplete;
+				})
+			);
+		} else {
+			setFilteredTodos(
+				todoArray.filter((td) => {
+					return td._id !== todo._id && td.isComplete;
+				})
+			);
+		}
+		//ha rányoktak a filterekre end
 	};
 
 	return (

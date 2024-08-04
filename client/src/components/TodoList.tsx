@@ -6,20 +6,22 @@ import { useContext } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
 import { TodoType } from "../services/api/apiTypes";
 import { usehandleFiltering } from "../hooks/useHandleFiltering";
+import { deleteALLTodo } from "../services/api/requests";
 
 type TodoListProps = {
 	todosList: TodoType[];
-	setTodos: () => void;
+	setTodos: (todo: TodoType[]) => void;
 };
 
 export default function TodoList({ todosList, setTodos }: TodoListProps) {
 	const themeContext = useContext(ThemeContext);
-	const [activeFilter, setActiveFilter] = useState("all");
+	const [activeFilter, setActiveFilter] = useState<
+		"all" | "active" | "completed"
+	>("all");
 	const [filteredTodos, setFilteredTodos] = useState<TodoType[] | null>(null);
 	const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
 	let TodoElements;
 	let activeCount;
-
 	const handleFiltering = (filter: string) => {
 		usehandleFiltering({
 			filter,
@@ -29,16 +31,23 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 		});
 	};
 
+	const handleClearAll = () => {
+		deleteALLTodo();
+		setTodos([]);
+		setFilteredTodos([]);
+	};
 	try {
 		if (!filteredTodos) {
 			activeCount = todoArray.filter((todo) => {
 				return todo.isCompleted === false;
 			});
-			TodoElements = todoArray.map((todo, index) => {
+			TodoElements = todoArray.reverse().map((todo, index) => {
 				return (
 					<Todo
 						key={index}
 						todo={todo}
+						setTodos={setTodos}
+						todoArray={todoArray}
 					/>
 				);
 			});
@@ -46,11 +55,15 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 			activeCount = filteredTodos.filter((todo) => {
 				return todo.isCompleted === false;
 			});
-			TodoElements = filteredTodos.map((todo, index) => {
+			TodoElements = filteredTodos.reverse().map((todo, index) => {
 				return (
 					<Todo
 						key={index}
 						todo={todo}
+						setTodos={setTodos}
+						todoArray={todoArray}
+						setFilteredTodos={setFilteredTodos}
+						activeFilter={activeFilter}
 					/>
 				);
 			});
@@ -115,6 +128,7 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 						</p>
 					</div>
 					<p
+						onClick={handleClearAll}
 						className={`mb-0 fs-6 fw-bold ${
 							themeContext?.isLight
 								? style.lightLastRowHoverable
@@ -133,8 +147,13 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 							: style.darkTodoListLastRow
 					}`}
 				>
-					<p className='mb-0'>x items left</p>
-					<p className='mb-0'>Clear Completed</p>
+					<p className='mb-0'>{`${activeCount?.length} items left`}</p>
+					<p
+						onClick={handleClearAll}
+						className='mb-0'
+					>
+						Clear Completed
+					</p>
 				</div>
 			</div>
 			<div

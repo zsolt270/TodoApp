@@ -1,18 +1,26 @@
-import { useState, useContext } from "react";
 import style from "./styles/TodoInput.module.css";
+import { useState, useContext } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
 import { createTodo } from "../services/api/requests";
+import { TodoType } from "../services/api/apiTypes";
 
-export default function TodoInput() {
+type TodoInputProps = {
+	todosList: TodoType[];
+	setTodos: (todo: TodoType[]) => void;
+};
+
+export default function TodoInput({ todosList, setTodos }: TodoInputProps) {
 	const [inputValue, setInputValue] = useState("");
 	const themeContext = useContext(ThemeContext);
-
+	const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setInputValue(value);
 	};
-	const handleSubmit = () => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		// e.preventDefault();
 		createTodo(inputValue, "false");
+		// setTodos([{ text: inputValue, isCompleted: false }, ...todoArray]);
 	};
 	return (
 		<div
