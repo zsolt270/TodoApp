@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
 import { TodoType } from "../services/api/apiTypes";
-// import useFilterTodos from "../hooks/useFilterTodos";
+import { usehandleFiltering } from "../hooks/useHandleFiltering";
 
 type TodoListProps = {
 	todosList: TodoType[];
@@ -15,21 +15,46 @@ type TodoListProps = {
 export default function TodoList({ todosList, setTodos }: TodoListProps) {
 	const themeContext = useContext(ThemeContext);
 	const [activeFilter, setActiveFilter] = useState("all");
-
-	// ide még egy statet majd a todoknak amik jönnek a fetchel
-	//aztán pedig function és abba a todo state filterelést
-
+	const [filteredTodos, setFilteredTodos] = useState<TodoType[] | null>(null);
+	const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
 	let TodoElements;
-	try {
-		const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
-		TodoElements = todoArray.map((todo, index) => {
-			return (
-				<Todo
-					key={index}
-					todo={todo}
-				/>
-			);
+	let activeCount;
+
+	const handleFiltering = (filter: string) => {
+		usehandleFiltering({
+			filter,
+			setActiveFilter,
+			setFilteredTodos,
+			todoArray,
 		});
+	};
+
+	try {
+		if (!filteredTodos) {
+			activeCount = todoArray.filter((todo) => {
+				return todo.isCompleted === false;
+			});
+			TodoElements = todoArray.map((todo, index) => {
+				return (
+					<Todo
+						key={index}
+						todo={todo}
+					/>
+				);
+			});
+		} else {
+			activeCount = filteredTodos.filter((todo) => {
+				return todo.isCompleted === false;
+			});
+			TodoElements = filteredTodos.map((todo, index) => {
+				return (
+					<Todo
+						key={index}
+						todo={todo}
+					/>
+				);
+			});
+		}
 	} catch (e) {
 		console.log(e);
 		console.log("todo making error");
@@ -50,7 +75,7 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 							: style.darkTodoListLastRow
 					}`}
 				>
-					<p className='mb-0 fs-6 fw-bold'>x items left</p>
+					<p className='mb-0 fs-6 fw-bold'>{`${activeCount?.length} items left`}</p>
 					<div className='d-flex justify-content-between gap-4'>
 						<p
 							className={`mb-0 fw-bold  ${
@@ -59,7 +84,7 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 									: style.darkLastRowHoverable
 							} ${activeFilter === "all" ? style.activeFilter : ""}`}
 							onClick={() => {
-								setActiveFilter("all");
+								handleFiltering("all");
 							}}
 						>
 							All
@@ -71,7 +96,7 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 									: style.darkLastRowHoverable
 							} ${activeFilter === "active" ? style.activeFilter : ""}`}
 							onClick={() => {
-								setActiveFilter("active");
+								handleFiltering("active");
 							}}
 						>
 							Active
@@ -83,7 +108,7 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 									: style.darkLastRowHoverable
 							} ${activeFilter === "completed" ? style.activeFilter : ""}`}
 							onClick={() => {
-								setActiveFilter("completed");
+								handleFiltering("completed");
 							}}
 						>
 							Completed
@@ -124,7 +149,7 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 						activeFilter === "all" ? style.activeFilter : ""
 					}`}
 					onClick={() => {
-						setActiveFilter("all");
+						handleFiltering("all");
 					}}
 				>
 					All
@@ -134,7 +159,7 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 						activeFilter === "active" ? style.activeFilter : ""
 					}`}
 					onClick={() => {
-						setActiveFilter("active");
+						handleFiltering("active");
 					}}
 				>
 					Active
@@ -144,7 +169,7 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 						activeFilter === "completed" ? style.activeFilter : ""
 					}`}
 					onClick={() => {
-						setActiveFilter("completed");
+						handleFiltering("completed");
 					}}
 				>
 					Completed

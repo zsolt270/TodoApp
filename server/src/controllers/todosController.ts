@@ -32,6 +32,8 @@ export default class TodosController {
 		if (!updatedTodo) {
 			res.status(404);
 			throw new Error("The Todo couldnt be found");
+		} else {
+			console.log(updatedTodo);
 		}
 		res.json({ message: "The update was successfull!" });
 	}
