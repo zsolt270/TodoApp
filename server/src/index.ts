@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import errorHandler from "./middleware/ErrorHandler";
 import router from "./routes/todosRoute";
 import connectDB from "./Model/connectDB";
+const cors = require("cors");
 
 dotenv.config();
 connectDB();
@@ -10,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/todos", router);
 

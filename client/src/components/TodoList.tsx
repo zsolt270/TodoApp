@@ -1,15 +1,39 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import style from "./styles/TodoList.module.css";
 import Todo from "./ui/Todo";
 import { useState } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
+import { TodoType } from "../services/api/apiTypes";
 // import useFilterTodos from "../hooks/useFilterTodos";
 
-export default function TodoList() {
+type TodoListProps = {
+	todosList: TodoType[];
+	setTodos: () => void;
+};
+
+export default function TodoList({ todosList, setTodos }: TodoListProps) {
 	const themeContext = useContext(ThemeContext);
 	const [activeFilter, setActiveFilter] = useState("all");
+
 	// ide még egy statet majd a todoknak amik jönnek a fetchel
 	//aztán pedig function és abba a todo state filterelést
+
+	let TodoElements;
+	try {
+		const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
+		TodoElements = todoArray.map((todo, index) => {
+			return (
+				<Todo
+					key={index}
+					todo={todo}
+				/>
+			);
+		});
+	} catch (e) {
+		console.log(e);
+		console.log("todo making error");
+	}
 
 	return (
 		<>
@@ -18,12 +42,7 @@ export default function TodoList() {
 					themeContext?.isLight ? style.lighttodoList : style.darktodoList
 				}`}
 			>
-				{/* ide amikor rendereli akkor porpként a todo statet mert kell a text és az iscompleted belőle */}
-				<Todo />
-				<Todo />
-				<Todo />
-
-				{/* last controll row */}
+				{TodoElements}
 				<div
 					className={`d-none d-md-flex justify-content-between align-items-center ${
 						themeContext?.isLight

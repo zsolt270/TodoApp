@@ -3,10 +3,16 @@ import sun from "../assets/icon-sun.svg";
 import moon from "../assets/icon-moon.svg";
 import { useContext } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
+import { TodoType } from "../services/api/apiTypes";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
 
-export default function Main() {
+type MainProps = {
+	todos: TodoType[];
+	setTodos: () => void;
+};
+
+export default function Main({ todos, setTodos }: MainProps) {
 	const themeContext = useContext(ThemeContext);
 	return (
 		<div className={themeContext?.isLight ? style.bgLight : style.bgDark}>
@@ -29,7 +35,10 @@ export default function Main() {
 					</div>
 				</div>
 				<TodoInput />
-				<TodoList />
+				<TodoList
+					todosList={todos}
+					setTodos={setTodos}
+				/>
 				<p className='mt-5 fs-6 fw-bold text-secondary text-center me-0 me-md-5'>
 					Drag and drop to reorder list
 				</p>

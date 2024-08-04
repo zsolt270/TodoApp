@@ -4,7 +4,6 @@ import Todos from "../Model/todosModel";
 export default class TodosController {
 	async getTodos(req: Request, res: Response) {
 		const todos = await Todos.find();
-		console.log(todos);
 		res.json({ todos });
 	}
 	// async getTodo(req: Request, res: Response) {
