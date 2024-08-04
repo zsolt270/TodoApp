@@ -7,32 +7,38 @@ export default function TodoList() {
 	const themeContext = useContext(ThemeContext);
 
 	return (
-		<div className={style.todoList}>
-			<Todo />
-			<Todo />
-			<Todo />
-
-			{/* last controll row */}
+		<>
 			<div
-				className={`d-none d-md-flex justify-content-between gap-2 ${
-					themeContext?.isLight
-						? style.lightTodoListLastRow
-						: style.darkTodoListLastRow
-				}`}
+				className={
+					themeContext?.isLight ? style.lighttodoList : style.darktodoList
+				}
 			>
-				<p className='mb-0'>x items left</p>
-				<div className='d-flex gap-2'>
-					<p className='mb-0'>All</p>
-					<p className='mb-0'>Active</p>
-					<p className='mb-0'>Completed</p>
-				</div>
-				<p className='mb-0'>Clear Completed</p>
-			</div>
+				<Todo />
+				<Todo />
+				<Todo />
 
-			{/* mobile view */}
-			<div className=' d-flex justify-content-between mb-4 d-md-none'>
-				<p className='mb-0'>x items left</p>
-				<p className='mb-0'>Clear Completed</p>
+				{/* last controll row */}
+				<div
+					className={`d-none d-md-flex justify-content-between gap-2 ${
+						themeContext?.isLight
+							? style.lightTodoListLastRow
+							: style.darkTodoListLastRow
+					}`}
+				>
+					<p className='mb-0'>x items left</p>
+					<div className='d-flex gap-2'>
+						<p className='mb-0'>All</p>
+						<p className='mb-0'>Active</p>
+						<p className='mb-0'>Completed</p>
+					</div>
+					<p className='mb-0'>Clear Completed</p>
+				</div>
+
+				{/* mobile view */}
+				<div className=' d-flex justify-content-between mb-4 d-md-none'>
+					<p className='mb-0'>x items left</p>
+					<p className='mb-0'>Clear Completed</p>
+				</div>
 			</div>
 			<div className='d-flex justify-content-center gap-4 d-md-none'>
 				<p className='mb-0'>All</p>
@@ -41,6 +47,6 @@ export default function TodoList() {
 			</div>
 			{/* mobile view */}
 			{/* last controll row */}
-		</div>
+		</>
 	);
 }

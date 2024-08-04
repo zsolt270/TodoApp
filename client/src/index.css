@@ -2,7 +2,7 @@
 
 :root {
 	--active: hsl(220, 98%, 61%);
-	--checkBG: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+	--checkBG: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
 	/* light Theme */
 	--lightBG: hsl(236, 33%, 92%);
@@ -11,6 +11,7 @@
 	/* --darkTodosTextColorOnHover: hsl(236, 33%, 92%);
 	--darkFooterTextColor: hsl(234, 11%, 52%); */
 	--lightCircleBorder: hsl(233, 11%, 84%);
+	--lightTodoBordeBottom: hsla(233, 11%, 84%, 0.5);
 
 	/* dark Theme */
 	--darkBG: hsl(235, 21%, 11%);
@@ -19,6 +20,7 @@
 	--darkTodosTextColorOnHover: hsl(236, 33%, 92%);
 	--darkFooterTextColor: hsl(234, 11%, 52%);
 	--darkCircleBorder: hsl(233, 14%, 35%);
+	--darkTodoBordeBottom: hsla(233, 14%, 35%, 0.5);
 	--darkshadow: hsl(237, 14%, 26%);
 }
 

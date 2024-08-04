@@ -1,6 +1,14 @@
-.todoList {
+.darktodoList {
+	border: 1px solid var(--todoDarkRowBG);
 	border-radius: 0.3rem;
 }
+.lighttodoList {
+	border: 1px solid var(--todoLightRowBG);
+	border-radius: 0.3rem;
+}
+
+.darktodoList,
+.lighttodoList,
 .lightTodoListLastRow,
 .darkTodoListLastRow {
 	transition: all 0.5s;

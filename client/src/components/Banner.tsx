@@ -7,25 +7,18 @@ import { ThemeContext } from "../services/providers/ThemeContext";
 
 export default function Banner() {
 	const themeContext = useContext(ThemeContext);
-	if (window.innerWidth > 768) {
-		return (
-			<>
-				<img
-					className='img-fluid w-100'
-					src={themeContext?.isLight ? lightBanner : darkBanner}
-					alt=''
-				/>
-			</>
-		);
-	} else {
-		return (
-			<>
-				<img
-					className='img-fluid w-100'
-					src={themeContext?.isLight ? lightBannerMobile : darkBannerMobile}
-					alt=''
-				/>
-			</>
-		);
-	}
+	return (
+		<>
+			<img
+				className='d-none d-md-block img-fluid w-100'
+				src={themeContext?.isLight ? lightBanner : darkBanner}
+				alt=''
+			/>
+			<img
+				className='d-md-none img-fluid w-100'
+				src={themeContext?.isLight ? lightBannerMobile : darkBannerMobile}
+				alt=''
+			/>
+		</>
+	);
 }

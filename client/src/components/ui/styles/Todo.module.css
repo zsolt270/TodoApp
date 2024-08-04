@@ -1,26 +1,36 @@
+/* Todo row styling   */
 .darkTodo,
 .lightTodo {
 	padding: 1.2rem 2rem;
 	display: flex;
 	align-items: center;
-	gap: 2;
+	gap: 20px;
+}
+.darkTodo:hover,
+.lightTodo:hover {
+	cursor: pointer;
 }
 
 .lightTodo {
-	border-bottom: 2px solid var(--lightCircleBorder);
+	border-bottom: 2px solid var(--lightTodoBordeBottom);
 	background-color: var(--todoLightRowBG);
 	color: var(--lightTodosTextColor);
 }
 .darkTodo {
+	border-bottom: 2px solid var(--darkTodoBordeBottom);
 	background-color: var(--todoDarkRowBG);
 	color: var(--darkTodosTextColor);
 }
+/* Todo row styling end */
 
+/* Checker styling */
+
+/* normal styles */
 .darkCircle,
 .lightCircle {
+	position: relative;
 	height: 25px;
 	width: 25px;
-	background-color: none;
 	border-radius: 50%;
 	display: inline-block;
 	margin-bottom: 0.2rem;
@@ -33,7 +43,62 @@
 .darkCircle {
 	border: 1px solid var(--darkCircleBorder);
 }
+/* normal styles end*/
 
+/* checker hover border styling */
+.lightCircle:hover::before,
+.darkCircle:hover::before {
+	content: "";
+	width: 26.5px;
+	height: 26.5px;
+	position: absolute;
+	bottom: -1px;
+	left: -0.5px;
+	background: var(--checkBG);
+	border-radius: inherit;
+}
+
+.lightCircle:hover::after,
+.darkCircle:hover::after {
+	content: "";
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-radius: inherit;
+}
+
+.lightCircle:hover::after {
+	background: var(--todoLightRowBG);
+}
+.darkCircle:hover::after {
+	background: var(--todoDarkRowBG);
+}
+
+/* checker hover border styling end*/
+
+/* Checker styling end*/
+
+.checkedCircle {
+	background: var(--checkBG);
+}
+.checkedCircle::after,
+.checkedCircle::before {
+	background: none !important;
+}
+
+.checker {
+	padding-bottom: 5px;
+	padding-left: 6px;
+}
+
+.lightCircle:hover::before,
+.darkCircle:hover::before,
+.lightCircle:hover::after,
+.darkCircle:hover::after,
+.checkedCircle::after,
+.checkedCircle::before,
 .lightTodo,
 .darkTodo,
 .darkCircle,
