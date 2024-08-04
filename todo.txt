@@ -1,6 +1,4 @@
-- a todo rowkat megcsinálni( hoverre jelenjen meg a törlés X, mobilon alapból legyen ott)
--utolsó sort megofrmázni dekstopra és mobilra
--és a többi hover effekt(a kör hovernél gradient körvonala legyen[de ezt lehet skippelemn meglátom  milyen nehéz])
+-utolsó sort megofrmázni mobilra
 -useffect lefetchelni a todokat és akkor mindegyikből csinálljon egy todo divet, ha nincs akkor ne csináljon
 -hozzáadni todokat
 -módositani todokat készre

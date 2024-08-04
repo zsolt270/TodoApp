@@ -29,11 +29,16 @@ export default function Todo() {
 					/>
 				)}
 			</span>
-			<p className='mb-0'>{isChecked ? <del>valami</del> : "valami"}</p>
-			<img
-				src={cross}
-				alt='X for deleting todo'
-			/>
+			<div className='d-flex justify-content-between align-items-center w-100'>
+				<p className='mb-0'>
+					{isChecked ? <del className='text-secondary'>valami</del> : "valami"}
+				</p>
+				<img
+					className={`d-md-none ${style.todoDeleter}`}
+					src={cross}
+					alt='X for deleting todo'
+				/>
+			</div>
 		</div>
 	);
 }

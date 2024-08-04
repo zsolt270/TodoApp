@@ -49,8 +49,8 @@
 .lightCircle:hover::before,
 .darkCircle:hover::before {
 	content: "";
-	width: 26.5px;
-	height: 26.5px;
+	width: 25px;
+	height: 25px;
 	position: absolute;
 	bottom: -1px;
 	left: -0.5px;
@@ -61,8 +61,8 @@
 .lightCircle:hover::after,
 .darkCircle:hover::after {
 	content: "";
-	width: 25px;
-	height: 25px;
+	width: 23px;
+	height: 23px;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -90,7 +90,12 @@
 
 .checker {
 	padding-bottom: 5px;
-	padding-left: 6px;
+	padding-left: 5px;
+}
+
+.darkTodo:hover > div .todoDeleter,
+.lightTodo:hover > div .todoDeleter {
+	display: block !important;
 }
 
 .lightCircle:hover::before,

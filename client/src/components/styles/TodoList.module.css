@@ -7,17 +7,56 @@
 	border-radius: 0.3rem;
 }
 
+.lightTodoListLastRow {
+	background-color: var(--todoLightRowBG);
+	color: var(--lightFooterTextColor);
+	padding: 1.2rem 1.5rem;
+}
+.darkTodoListLastRow {
+	background-color: var(--todoDarkRowBG);
+	color: var(--darkFooterTextColor);
+	padding: 1.2rem 1.5rem;
+}
+
+.lightLastRowHoverable:hover {
+	color: var(--lightTodosTextColor);
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.darkLastRowHoverable:hover {
+	color: var(--darkTodosTextColorOnHover);
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.lastLightRowMobile,
+.lastDarkRowMobile,
+.activeFilter,
 .darktodoList,
 .lighttodoList,
 .lightTodoListLastRow,
 .darkTodoListLastRow {
 	transition: all 0.5s;
 }
-.lightTodoListLastRow {
+
+.activeFilter,
+.activeFilter:hover {
+	color: var(--active);
+}
+
+/* Todolist lastrow mobile */
+.lastLightRowMobile,
+.lastDarkRowMobile {
+	border-radius: 0.3rem;
 	background-color: var(--todoLightRowBG);
-	color: var(--lightTodosTextColor);
+	color: var(--darkFooterTextColor);
+	padding: 1.2rem 1.5rem;
 }
-.darkTodoListLastRow {
+.lastLightRowMobile {
+	background-color: var(--todoLightRowBG);
+}
+.lastDarkRowMobile {
 	background-color: var(--todoDarkRowBG);
-	color: var(--darkTodosTextColor);
 }
+/* Todolist lastrow mobile end*/

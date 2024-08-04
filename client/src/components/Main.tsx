@@ -30,7 +30,7 @@ export default function Main() {
 				</div>
 				<TodoInput />
 				<TodoList />
-				<p className='mt-5 fs-6 text-secondary text-center'>
+				<p className='mt-5 fs-6 fw-bold text-secondary text-center me-0 me-md-5'>
 					Drag and drop to reorder list
 				</p>
 			</div>
