@@ -27,6 +27,8 @@ This is my fullstack solution to the [Todo app challenge on Frontend Mentor](htt
 
 ### Screenshot
 
+For more screenshots go to the client -> public folder
+
 -Desktop:
 
 ![Screenshot of the Desktop Dark view](./client/public/desktop/desktop_dark_all.png)
