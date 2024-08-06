@@ -34,7 +34,8 @@ For more screenshots go to the client -> public folder
 
 ![Screenshot of the Desktop Dark view](./client/public/desktop/desktop_dark_all.png)
 ![Screenshot of the Desktop Light view](./client/public/desktop/desktop_light_all.png)
-</br>
+
 -Mobile:
+</br>
 ![Screenshot of the Mobile Dark view](./client/public/mobile/mobile_dark_all.png)
 ![Screenshot of the Mobile Lightp view](./client/public/mobile/mobile_light_all.png)
