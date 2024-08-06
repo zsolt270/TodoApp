@@ -1,8 +1,23 @@
 import axios from "axios";
 const port = import.meta.env.VITE_PORT;
 
-export const createTodo = async (value: string, isCompleted: string) => {
-	console.log();
+export const getTodos = async (setTodos) => {
+	await axios
+		.get(`http://localhost:${port}/api/todos/`)
+		.then((res) => {
+			console.log(res.data);
+			setTodos(res.data);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};
+
+export const createTodo = async (
+	value: string,
+	isCompleted: string,
+	setTodos
+) => {
 	await axios
 		.post(`http://localhost:${port}/api/todos/`, {
 			text: value,
@@ -14,6 +29,7 @@ export const createTodo = async (value: string, isCompleted: string) => {
 		.catch((err) => {
 			console.log(err);
 		});
+	getTodos(setTodos);
 };
 
 export const updateUpdateToCompleted = async (
@@ -25,6 +41,7 @@ export const updateUpdateToCompleted = async (
 			isCompleted: !isCompleted,
 		})
 		.then((res) => {
+			console.log(!isCompleted);
 			console.log(res.data);
 		})
 		.catch((err) => {

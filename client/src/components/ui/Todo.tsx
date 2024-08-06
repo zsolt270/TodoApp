@@ -25,10 +25,8 @@ export default function Todo({
 }: TodoPropsType) {
 	const themeContext = useContext(ThemeContext);
 	// const [isChecked, setIsChecked] = useState(false);
-
 	const handleCheck = () => {
 		// setIsChecked(!isChecked);
-		console.log(todo.isCompleted);
 		updateUpdateToCompleted(todo._id, todo.isCompleted);
 		// itt lehet a settodost direktbe változtatni
 		// megkeresni a todo._id-t filterrel és akkor azét setTodo(...todo(vagy valami), isComplete: isChecked)

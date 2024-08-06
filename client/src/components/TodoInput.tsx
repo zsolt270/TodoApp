@@ -3,28 +3,28 @@ import { useState, useContext } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
 import { createTodo } from "../services/api/requests";
 import { TodoType } from "../services/api/apiTypes";
+// import { getTodos } from "../services/api/requests.ts";
 
 type TodoInputProps = {
 	todosList: TodoType[];
 	setTodos: (todo: TodoType[]) => void;
 };
-
-export default function TodoInput({ todosList, setTodos }: TodoInputProps) {
+// todosList,
+export default function TodoInput({ setTodos }: TodoInputProps) {
 	const [inputValue, setInputValue] = useState("");
 	const themeContext = useContext(ThemeContext);
-	const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
+	// const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setInputValue(value);
 	};
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		createTodo(inputValue, "false");
+		createTodo(inputValue, "false", setTodos);
 		// ide settodoval kéne és akkor nem kell refreshelni a paget
-
-		setTodos({
-			todos: [{ text: inputValue, isCompleted: false }, ...todoArray],
-		});
+		// setTodos({
+		// 	todos: [{ text: inputValue, isCompleted: false }, ...todoArray],
+		// });
 		setInputValue("");
 	};
 	return (
