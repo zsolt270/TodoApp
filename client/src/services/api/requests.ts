@@ -1,8 +1,10 @@
 import axios from "axios";
+const port = import.meta.env.VITE_PORT;
 
 export const createTodo = async (value: string, isCompleted: string) => {
+	console.log();
 	await axios
-		.post("http://localhost:5001/api/todos/", {
+		.post(`http://localhost:${port}/api/todos/`, {
 			text: value,
 			isCompleted: isCompleted,
 		})
@@ -19,8 +21,8 @@ export const updateUpdateToCompleted = async (
 	isCompleted: string
 ) => {
 	await axios
-		.put(`http://localhost:5001/api/todos/${id}`, {
-			isCompleted: isCompleted,
+		.put(`http://localhost:${port}/api/todos/${id}`, {
+			isCompleted: !isCompleted,
 		})
 		.then((res) => {
 			console.log(res.data);
@@ -32,7 +34,7 @@ export const updateUpdateToCompleted = async (
 
 export const deleteSingleTodo = async (id: string) => {
 	await axios
-		.delete(`http://localhost:5001/api/todos/${id}`)
+		.delete(`http://localhost:${port}/api/todos/${id}`)
 		.then((res) => {
 			console.log(res.data);
 		})
@@ -43,7 +45,7 @@ export const deleteSingleTodo = async (id: string) => {
 
 export const deleteALLTodo = async () => {
 	await axios
-		.delete(`http://localhost:5001/api/todos/`)
+		.delete(`http://localhost:${port}/api/todos/`)
 		.then((res) => {
 			console.log(res.data);
 		})

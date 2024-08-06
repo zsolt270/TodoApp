@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { TodoType } from "../services/api/apiTypes.ts";
+const port = import.meta.env.VITE_PORT;
 
 export const useFetchTodos = () => {
 	const [todos, setTodos] = useState<TodoType[]>([]);
@@ -9,7 +10,7 @@ export const useFetchTodos = () => {
 	useEffect(() => {
 		const fetchTodos = async () => {
 			await axios
-				.get("http://localhost:5001/api/todos/")
+				.get(`http://localhost:${port}/api/todos/`)
 				.then((res) => {
 					setTodos(res.data);
 				})

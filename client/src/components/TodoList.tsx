@@ -18,56 +18,61 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 	const [activeFilter, setActiveFilter] = useState<
 		"all" | "active" | "completed"
 	>("all");
-	const [filteredTodos, setFilteredTodos] = useState<TodoType[] | null>(null);
+	// const [filteredTodos, setFilteredTodos] = useState<TodoType[] | null>(null);
 	const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
 	let TodoElements;
 	let activeCount;
-	const handleFiltering = (filter: string) => {
-		usehandleFiltering({
-			filter,
-			setActiveFilter,
-			setFilteredTodos,
-			todoArray,
-		});
-	};
+	// const handleFiltering = (filter: string) => {
+	// 	usehandleFiltering({
+	// 		filter,
+	// 		setActiveFilter,
+	// 		setFilteredTodos,
+	// 		todoArray,
+	// 	});
+	// };
 
 	const handleClearAll = () => {
 		deleteALLTodo();
-		setTodos([]);
-		setFilteredTodos([]);
+		setTodos({ todos: [] });
+		// setFilteredTodos({ todos: [] });
 	};
 	try {
-		if (!filteredTodos) {
-			activeCount = todoArray.filter((todo) => {
-				return todo.isCompleted === false;
-			});
-			TodoElements = todoArray.reverse().map((todo, index) => {
-				return (
-					<Todo
-						key={index}
-						todo={todo}
-						setTodos={setTodos}
-						todoArray={todoArray}
-					/>
-				);
-			});
-		} else {
-			activeCount = filteredTodos.filter((todo) => {
-				return todo.isCompleted === false;
-			});
-			TodoElements = filteredTodos.reverse().map((todo, index) => {
-				return (
-					<Todo
-						key={index}
-						todo={todo}
-						setTodos={setTodos}
-						todoArray={todoArray}
-						setFilteredTodos={setFilteredTodos}
-						activeFilter={activeFilter}
-					/>
-				);
-			});
-		}
+		activeCount = todoArray.filter((todo) => {
+			return todo.isCompleted === false;
+		});
+		// if (!filteredTodos) {
+		// 	console.log("nem filtertodos");
+		// 	activeCount = todoArray.filter((todo) => {
+		// 		return todo.isCompleted === false;
+		// 	});
+		TodoElements = todoArray.map((todo, index) => {
+			return (
+				<Todo
+					key={index}
+					todo={todo}
+					setTodos={setTodos}
+					todoArray={todoArray}
+				/>
+			);
+		});
+		// } else {
+		// 	console.log("filtertodos");
+		// 	activeCount = filteredTodos.filter((todo) => {
+		// 		return todo.isCompleted === false;
+		// 	});
+		// 	TodoElements = filteredTodos.map((todo, index) => {
+		// 		return (
+		// 			<Todo
+		// 				key={index}
+		// 				todo={todo}
+		// 				setTodos={setTodos}
+		// 				todoArray={todoArray}
+		// 				setFilteredTodos={setFilteredTodos}
+		// 				activeFilter={activeFilter}
+		// 			/>
+		// 		);
+		// 	});
+		// }
 	} catch (e) {
 		console.log(e);
 		console.log("todo making error");

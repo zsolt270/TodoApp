@@ -24,46 +24,38 @@ export default function Todo({
 	activeFilter,
 }: TodoPropsType) {
 	const themeContext = useContext(ThemeContext);
-	const [isChecked, setIsChecked] = useState(false);
+	// const [isChecked, setIsChecked] = useState(false);
 
 	const handleCheck = () => {
-		setIsChecked(!isChecked);
-		updateUpdateToCompleted(todo._id, isChecked as unknown as string);
+		// setIsChecked(!isChecked);
+		console.log(todo.isCompleted);
+		updateUpdateToCompleted(todo._id, todo.isCompleted);
 		// itt lehet a settodost direktbe változtatni
 		// megkeresni a todo._id-t filterrel és akkor azét setTodo(...todo(vagy valami), isComplete: isChecked)
-		// setTodos()
+		// const changedTodo = todoArray.filter((td) => {
+		// 	return td.text == todo.text;
+		// });
+		const changedTodo = todoArray.map((td) => {
+			if (td.text == todo.text) {
+				return { ...td, isCompleted: !td.isCompleted };
+			} else {
+				return td;
+			}
+		});
+		setTodos({ todos: changedTodo });
+		//itt kéne megoldani hogy  atöbbi is benne maradjon
+		// setTodos({
+		// 	todos: [...todoArray, { ...todo, isCompleted: !todo.isCompleted }],
+		// });
 	};
 
 	const handleSingleDelete = () => {
 		deleteSingleTodo(todo._id);
 		// ez akkor ha nem volt filterelve
-		const valami = todoArray.filter((td) => {
-			return td._id !== todo._id;
+		const remainingTodos = todoArray.filter((td) => {
+			return td.text !== todo.text;
 		});
-		setTodos(valami);
-		// ez akkor ha nem volt filterelve end
-
-		//ha rányoktak a filterekre
-		if (activeFilter == "all") {
-			setFilteredTodos(
-				todoArray.filter((td) => {
-					return td._id !== todo._id;
-				})
-			);
-		} else if (activeFilter == "active") {
-			setFilteredTodos(
-				todoArray.filter((td) => {
-					return td._id !== todo._id && !td.isComplete;
-				})
-			);
-		} else {
-			setFilteredTodos(
-				todoArray.filter((td) => {
-					return td._id !== todo._id && td.isComplete;
-				})
-			);
-		}
-		//ha rányoktak a filterekre end
+		setTodos({ todos: remainingTodos });
 	};
 
 	return (
@@ -71,10 +63,10 @@ export default function Todo({
 			<span
 				className={`${
 					themeContext?.isLight ? style.lightCircle : style.darkCircle
-				} ${isChecked || todo.isCompleted ? style.checkedCircle : ""} `}
+				} ${todo.isCompleted ? style.checkedCircle : ""} `}
 				onClick={handleCheck}
 			>
-				{isChecked || todo.isCompleted ? (
+				{todo.isCompleted ? (
 					<img
 						className={`fs-2 ${style.checker}`}
 						src={check}
@@ -86,7 +78,7 @@ export default function Todo({
 			</span>
 			<div className='d-flex justify-content-between align-items-center w-100'>
 				<p className='mb-0 text-break'>
-					{isChecked || todo.isCompleted ? (
+					{todo.isCompleted ? (
 						<del className='text-secondary'>{todo.text}</del>
 					) : (
 						`${todo.text}`

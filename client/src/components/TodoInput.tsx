@@ -18,9 +18,14 @@ export default function TodoInput({ todosList, setTodos }: TodoInputProps) {
 		setInputValue(value);
 	};
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		// e.preventDefault();
+		e.preventDefault();
 		createTodo(inputValue, "false");
-		// setTodos([{ text: inputValue, isCompleted: false }, ...todoArray]);
+		// ide settodoval kéne és akkor nem kell refreshelni a paget
+
+		setTodos({
+			todos: [{ text: inputValue, isCompleted: false }, ...todoArray],
+		});
+		setInputValue("");
 	};
 	return (
 		<div

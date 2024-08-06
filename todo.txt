@@ -1,3 +1,12 @@
 -módositani todokat készre- todo.tsx
 -törölni todot- todo.tsx
-- és ha lesz ekdvem akkor emgoldást keresni arra hogy amikor hozzáadk akkor ne frissitsem ahhoz hogy egyből megjelenjen- Todoinput.tsx
+
+
+
+4.a filteringet szebbre megcsinálni/ más megoldással
+
+
+kész:
+-az input
+-1 törlés és mindegyik törlés
+2.update completed v nem completed között
