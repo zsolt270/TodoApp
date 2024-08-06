@@ -8,9 +8,6 @@ const controller = new TodosController();
 //get all the todos
 router.get("/", asyncHandler(controller.getTodos));
 
-//get one specific todo
-// router.get("/:id", asyncHandler(controller.getTodo));
-
 //post a todo
 router.post("/", asyncHandler(controller.createTodo));
 

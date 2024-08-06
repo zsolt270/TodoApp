@@ -6,14 +6,7 @@ export default class TodosController {
 		const todos = await Todos.find();
 		res.json({ todos });
 	}
-	// async getTodo(req: Request, res: Response) {
-	// 	const todo = await Todos.findById(req.body.id);
-	// 	if (!todo) {
-	// 		res.status(404);
-	// 		throw new Error("The todo is not existing");
-	// 	}
-	// 	res.json({ todo });
-	// }
+
 	async createTodo(req: Request, res: Response) {
 		console.log(req.body);
 		const { text, isCompleted } = req.body;

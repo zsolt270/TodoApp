@@ -17,6 +17,7 @@ export default function Main({ todos, setTodos }: MainProps) {
 	const [activeFilter, setActiveFilter] = useState<
 		"all" | "active" | "completed"
 	>("all");
+
 	return (
 		<div className={themeContext?.isLight ? style.bgLight : style.bgDark}>
 			<div className={style.todoContainer}>
