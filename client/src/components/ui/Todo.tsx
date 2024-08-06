@@ -2,7 +2,7 @@
 import style from "./styles/Todo.module.css";
 import check from "../../assets/icon-check.svg";
 import cross from "../../assets/icon-cross.svg";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "../../services/providers/ThemeContext";
 import { updateUpdateToCompleted } from "../../services/api/requests";
 import { deleteSingleTodo } from "../../services/api/requests";
@@ -12,46 +12,45 @@ type TodoPropsType = {
 	todo: any;
 	setTodos: (todo: TodoType[]) => void;
 	todoArray: any;
-	setFilteredTodos?: (value: React.SetStateAction<TodoType[] | null>) => void;
-	activeFilter?: "all" | "active" | "completed";
+	activeFilter: "all" | "active" | "completed";
+	setActiveFilter: (todo: "all" | "active" | "completed") => void;
 };
 
 export default function Todo({
 	todo,
 	setTodos,
 	todoArray,
-	setFilteredTodos,
 	activeFilter,
 }: TodoPropsType) {
 	const themeContext = useContext(ThemeContext);
-	// const [isChecked, setIsChecked] = useState(false);
-	const handleCheck = () => {
-		// setIsChecked(!isChecked);
-		updateUpdateToCompleted(todo._id, todo.isCompleted);
-		// itt lehet a settodost direktbe változtatni
-		// megkeresni a todo._id-t filterrel és akkor azét setTodo(...todo(vagy valami), isComplete: isChecked)
-		// const changedTodo = todoArray.filter((td) => {
-		// 	return td.text == todo.text;
-		// });
-		const changedTodo = todoArray.map((td) => {
-			if (td.text == todo.text) {
-				return { ...td, isCompleted: !td.isCompleted };
-			} else {
-				return td;
-			}
-		});
-		setTodos({ todos: changedTodo });
-		//itt kéne megoldani hogy  atöbbi is benne maradjon
-		// setTodos({
-		// 	todos: [...todoArray, { ...todo, isCompleted: !todo.isCompleted }],
-		// });
+	const handleCheck = async () => {
+		console.log(activeFilter);
+		await updateUpdateToCompleted(todo._id, todo.isCompleted);
+		const changedTodoArray = todoArray
+			.map((td) => {
+				if (td._id == todo._id) {
+					return { ...td, isCompleted: !td.isCompleted };
+				} else {
+					return td;
+				}
+			})
+			.filter((todo) => {
+				if (activeFilter == "active") {
+					return todo.isCompleted == false;
+				} else if (activeFilter == "completed") {
+					return todo.isCompleted == true;
+				} else {
+					return todo;
+				}
+			});
+		console.log(changedTodoArray);
+		setTodos({ todos: changedTodoArray });
 	};
 
 	const handleSingleDelete = () => {
 		deleteSingleTodo(todo._id);
-		// ez akkor ha nem volt filterelve
 		const remainingTodos = todoArray.filter((td) => {
-			return td.text !== todo.text;
+			return td._id !== todo._id;
 		});
 		setTodos({ todos: remainingTodos });
 	};

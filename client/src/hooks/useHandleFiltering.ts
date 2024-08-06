@@ -1,34 +1,38 @@
 import { TodoType } from "../services/api/apiTypes";
+import { getTodos } from "../services/api/requests";
+import { getFilteredTodos } from "../services/api/requests";
 
 type FilterPropsType = {
-	filter: string;
-	setActiveFilter: (filter: string) => void;
-	setFilteredTodos: (filteredlist: TodoType[]) => void;
+	filter: "all" | "active" | "completed";
+	setActiveFilter: (filter: "all" | "active" | "completed") => void;
 	todoArray: TodoType[];
+	setTodos: (filteredlist: TodoType[]) => void;
 };
 
-export const usehandleFiltering = ({
+export const usehandleFiltering = async ({
 	filter,
 	setActiveFilter,
-	setFilteredTodos,
 	todoArray,
+	setTodos,
 }: FilterPropsType) => {
-	setActiveFilter(filter);
-	let filteredlist;
 	if (filter === "all") {
-		filteredlist = todoArray.map((todo) => {
-			return todo;
-		});
-		setFilteredTodos(filteredlist);
+		getTodos(setTodos);
+		setActiveFilter("all");
 	} else if (filter === "active") {
-		filteredlist = todoArray.filter((todo) => {
+		await getFilteredTodos(setTodos, "active");
+		const filteredTodos = todoArray.filter((todo) => {
 			return todo.isCompleted === false;
 		});
-		setFilteredTodos(filteredlist);
-	} else if (filter === "completed") {
-		filteredlist = todoArray.filter((todo) => {
+		console.log(filteredTodos);
+
+		setActiveFilter("active");
+	} else {
+		await getFilteredTodos(setTodos, "completed");
+		const filteredTodos = todoArray.filter((todo) => {
 			return todo.isCompleted === true;
 		});
-		setFilteredTodos(filteredlist);
+		console.log(filteredTodos);
+
+		setActiveFilter("completed");
 	}
 };

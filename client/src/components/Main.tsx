@@ -1,7 +1,7 @@
 import style from "./styles/Main.module.css";
 import sun from "../assets/icon-sun.svg";
 import moon from "../assets/icon-moon.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
 import { TodoType } from "../services/api/apiTypes";
 import TodoInput from "./TodoInput";
@@ -14,6 +14,9 @@ type MainProps = {
 
 export default function Main({ todos, setTodos }: MainProps) {
 	const themeContext = useContext(ThemeContext);
+	const [activeFilter, setActiveFilter] = useState<
+		"all" | "active" | "completed"
+	>("all");
 	return (
 		<div className={themeContext?.isLight ? style.bgLight : style.bgDark}>
 			<div className={style.todoContainer}>
@@ -37,10 +40,13 @@ export default function Main({ todos, setTodos }: MainProps) {
 				<TodoInput
 					todosList={todos}
 					setTodos={setTodos}
+					setActiveFilter={setActiveFilter}
 				/>
 				<TodoList
 					todosList={todos}
 					setTodos={setTodos}
+					activeFilter={activeFilter}
+					setActiveFilter={setActiveFilter}
 				/>
 				<p className='mt-5 fs-6 fw-bold text-secondary text-center me-0 me-md-5'>
 					Drag and drop to reorder list

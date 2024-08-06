@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import style from "./styles/TodoList.module.css";
 import Todo from "./ui/Todo";
-import { useState } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../services/providers/ThemeContext";
 import { TodoType } from "../services/api/apiTypes";
@@ -11,25 +10,23 @@ import { deleteALLTodo } from "../services/api/requests";
 type TodoListProps = {
 	todosList: TodoType[];
 	setTodos: (todo: TodoType[]) => void;
+	activeFilter: "all" | "active" | "completed";
+	setActiveFilter: (iscompleted: "all" | "active" | "completed") => void;
 };
 
-export default function TodoList({ todosList, setTodos }: TodoListProps) {
+export default function TodoList({
+	todosList,
+	setTodos,
+	activeFilter,
+	setActiveFilter,
+}: TodoListProps) {
 	const themeContext = useContext(ThemeContext);
-	const [activeFilter, setActiveFilter] = useState<
-		"all" | "active" | "completed"
-	>("all");
-	const [filteredTodos, setFilteredTodos] = useState<TodoType[] | null>(null);
 	const todoArray = Object.values(todosList)[0] as unknown as TodoType[];
 	let TodoElements;
 	let activeCount;
-	const handleFiltering = (filter: "all" | "active" | "completed") => {
-		if (filter === "all") {
-			setActiveFilter("all");
-		} else if (filter === "active") {
-			setActiveFilter("active");
-		} else {
-			setActiveFilter("completed");
-		}
+
+	const handleFiltering = async (filter: "all" | "active" | "completed") => {
+		usehandleFiltering({ filter, setActiveFilter, todoArray, setTodos });
 	};
 
 	const handleClearAll = () => {
@@ -40,18 +37,17 @@ export default function TodoList({ todosList, setTodos }: TodoListProps) {
 		activeCount = todoArray.filter((todo) => {
 			return todo.isCompleted === false;
 		});
+		const reversedTodos = [...todoArray];
 
-		// 	console.log("nem filtertodos");
-		// 	activeCount = todoArray.filter((todo) => {
-		// 		return todo.isCompleted === false;
-		// 	});
-		TodoElements = todoArray.map((todo, index) => {
+		TodoElements = reversedTodos.reverse().map((todo, index) => {
 			return (
 				<Todo
 					key={index}
 					todo={todo}
 					setTodos={setTodos}
 					todoArray={todoArray}
+					activeFilter={activeFilter}
+					setActiveFilter={setActiveFilter}
 				/>
 			);
 		});
