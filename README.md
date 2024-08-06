@@ -20,6 +20,7 @@ This is my fullstack solution to the [Todo app challenge on Frontend Mentor](htt
 - [React](https://reactjs.org/)
 - [Node.js](https://nodejs.org/en)
 - [Express.js](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
 
 ### Links
 
@@ -33,7 +34,7 @@ For more screenshots go to the client -> public folder
 
 ![Screenshot of the Desktop Dark view](./client/public/desktop/desktop_dark_all.png)
 ![Screenshot of the Desktop Light view](./client/public/desktop/desktop_light_all.png)
-
+</br>
 -Mobile:
 ![Screenshot of the Mobile Dark view](./client/public/mobile/mobile_dark_all.png)
 ![Screenshot of the Mobile Lightp view](./client/public/mobile/mobile_light_all.png)
