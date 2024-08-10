@@ -24,7 +24,7 @@ This is my fullstack solution to the [Todo app challenge on Frontend Mentor](htt
 
 ### Links
 
-- [Click here to check out the video about the demo!](https://raw.githubusercontent.com/zsolt270/TodoApp/main/TodoApp.mp4)
+- [Click here to check out the video about the demo!](https://raw.githubusercontent.com/zsolt270/TodoApp/main/assets/TodoApp.mp4)
 
 ### Screenshot
 
