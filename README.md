@@ -14,7 +14,7 @@ This is my fullstack solution to the [Todo app challenge on Frontend Mentor](htt
 ### Built with
 
 - HTML
-- CSS custom properties
+- CSS
 - TypeScript
 - [Bootstrap](https://getbootstrap.com/)
 - [React](https://reactjs.org/)
